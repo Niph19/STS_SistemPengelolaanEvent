@@ -13,6 +13,15 @@ return new class extends Migration
     {
         Schema::create('events', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('category_id')->constrained('categories')->onDelete('cascade');
+            $table->foreignId('pengelola_id')->constrained('users')->onDelete('cascade');
+            $table->string('title');
+            $table->text('description');
+            $table->string('location');
+            $table->datetime('start_date');
+            $table->datetime('end_date');
+            $table->unsignedInteger('capacity');
+            $table->enum('status', ['upcoming', 'ongoing', 'completed', 'canceled']);
             $table->timestamps();
         });
     }

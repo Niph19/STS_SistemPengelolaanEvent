@@ -260,3 +260,18 @@ Perbedaan hak akses diterapkan melalui **Authentication**, **Authorization**, da
 - `categories` 1 — N `events`
 - `users` (role peserta) N — N `events` melalui tabel pivot `registrations`
 - Constraint unique pada `(user_id, event_id)` di tabel `registrations` untuk mencegah pendaftaran ganda pada event yang sama
+
+## 9. Kompetensi Teknis yang Diterapkan
+ 
+| No | Kompetensi |
+|----|------------|
+| 1 | MVC (Model-View-Controller) |
+| 2 | Blade Templating |
+| 3 | Authentication & Authorization |
+| 4 | Eloquent ORM & Relasi Database |
+| 5 | ERD |
+| 6 | Custom Middleware |
+| 7 | Validation & FormRequest |
+| 8 | Search, Filter & Pagination |
+| 9 | N+1 Query / Eager Loading |
+| 10 | SDLC — Product Backlog & Sprint Backlog |
