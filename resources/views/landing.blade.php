@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>EventSekolah — Sistem Pengelolaan & Pendaftaran Event</title>
+    <title>EventSekolah — Pendaftaran Event</title>
 
     <!-- Google Fonts: Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -103,21 +103,16 @@
 
                     <!-- Left Column: Headline (Left-aligned as instructed) -->
                     <div class="lg:col-span-7 flex flex-col items-start text-left">
-                        <!-- Badge -->
-                        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-[8px] bg-[#1A2540] border border-white/[0.08] text-xs font-medium text-[#9BA3B8] mb-6">
-                            <span class="w-2 h-2 rounded-full bg-[#E8734A] animate-pulse"></span>
-                            <span>Platform Resmi Manajemen Event Sekolah</span>
-                        </div>
 
                         <!-- Main Headline -->
                         <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#F5F3EE] leading-[1.18] mb-6">
-                            Semua event sekolah, <br class="hidden sm:inline" />
+                            Satu event sekolah, <br class="hidden sm:inline" />
                             <span class="text-[#E8734A]">satu tempat</span> untuk daftar.
                         </h1>
 
                         <!-- Subheadline -->
                         <p class="text-base sm:text-lg text-[#9BA3B8] leading-relaxed max-w-2xl mb-8 font-normal">
-                            Jelajahi seminar inspiratif, workshop keterampilan kejuruan, lomba prestasi, hingga kegiatan OSIS. Pantau kuota real-time dan kelola status tiket pendaftaranmu dengan mudah.
+                            Temukan event terbaik di sekolahmu, seminar, workshop kejuruan, lomba prestasi, hingga kegiatan OSIS. Amankan slotmu sebelum kuota penuh dan pantau status pendaftaran langsung dari dashboard-mu.
                         </p>
 
                         <!-- Quick Search & Action Bar -->
@@ -319,7 +314,7 @@
         </section>
 
         <!-- Rekomendasi Event Section (Artitax Card Grid Concept: 4 Columns, Dark Palette, Coral Badges) -->
-        <section id="rekomendasi" class="py-20">
+        <section id="rekomendasi" class="py-5">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <!-- Section Header -->
                 <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
