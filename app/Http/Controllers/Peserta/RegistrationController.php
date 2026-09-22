@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Peserta;
 use App\Http\Controllers\Controller;
 use App\Models\Event;
 use App\Models\Registration;
+use Illuminate\Database\UniqueConstraintViolationException;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -57,12 +58,16 @@ class RegistrationController extends Controller
             return back()->with('error', 'Kamu sudah terdaftar di event ini.');
         }
 
-        Registration::create([
-            'user_id'       => auth()->id(),
-            'event_id'      => $event->id,
-            'status'        => 'pending',
-            'registered_at' => now(),
-        ]);
+        try {
+            Registration::create([
+                'user_id'       => auth()->id(),
+                'event_id'      => $event->id,
+                'status'        => 'pending',
+                'registered_at' => now(),
+            ]);
+        } catch (UniqueConstraintViolationException) {
+            return back()->with('error', 'Kamu sudah pernah mendaftar di event ini.');
+        }
 
         return redirect()->route('events.show', $event)
                          ->with('success', 'Pendaftaran berhasil! Menunggu persetujuan pengelola.');

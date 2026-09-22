@@ -45,17 +45,12 @@
                         <div class="text-lg font-bold tracking-tight text-[#F5F3EE] leading-none">
                             Event<span class="text-[#E8734A]">Sekolah</span>
                         </div>
-                        <div class="text-[10px] text-[#9BA3B8] font-medium tracking-widest uppercase mt-0.5">STS Portal</div>
                     </div>
                 </a>
 
                 {{-- Main hero text --}}
                 <div class="flex-1 flex flex-col justify-center mt-auto mb-auto py-16">
                     <div class="max-w-md">
-                        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#E8734A]/10 border border-[#E8734A]/20 text-[#E8734A] text-xs font-semibold tracking-wide mb-6">
-                            <div class="w-1.5 h-1.5 rounded-full bg-[#E8734A] animate-pulse"></div>
-                            Platform Event Sekolah
-                        </div>
 
                         <h1 class="text-4xl xl:text-5xl font-bold text-[#F5F3EE] leading-[1.15] tracking-tight mb-6">
                             Kelola & Ikuti<br>
@@ -64,31 +59,9 @@
                         </h1>
 
                         <p class="text-[#9BA3B8] text-base leading-relaxed mb-10">
-                            Platform terpusat untuk mengelola seminar, workshop, lomba, dan pelatihan. Daftar, kelola, dan pantau semua dalam satu tempat.
-                        </p>
+                            Satu tempat untuk menemukan dan mendaftar semua event sekolah. Kuota real-time, konfirmasi instan, status pendaftaran selalu dalam genggaman.                        </p>
 
-                        {{-- Feature highlights --}}
-                        <div class="space-y-3">
-                            @foreach([
-                                ['icon' => 'M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z', 'text' => 'Pendaftaran event online realtime'],
-                                ['icon' => 'M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2', 'text' => 'Manajemen peserta & status pendaftaran'],
-                                ['icon' => 'M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0', 'text' => 'Hak akses 3 role: Admin, Pengelola, Peserta'],
-                            ] as $feature)
-                                <div class="flex items-center gap-3">
-                                    <div class="flex-shrink-0 w-8 h-8 rounded-lg bg-[#1A2540] border border-white/[0.06] flex items-center justify-center">
-                                        <svg class="w-4 h-4 text-[#E8734A]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-                                            <path stroke-linecap="round" stroke-linejoin="round" d="{{ $feature['icon'] }}"/>
-                                        </svg>
-                                    </div>
-                                    <span class="text-sm text-[#9BA3B8]">{{ $feature['text'] }}</span>
-                                </div>
-                            @endforeach
-                        </div>
-                    </div>
-                </div>
-
-                {{-- Bottom stats --}}
-                <div class="flex items-center gap-8 pt-8 border-t border-white/[0.06]">
+                        <div class="flex items-center gap-8 pt-8 border-t border-white/[0.06]">
                     @foreach([
                         ['label' => 'Event Aktif', 'value' => '12+'],
                         ['label' => 'Peserta Terdaftar', 'value' => '250+'],
@@ -100,7 +73,8 @@
                         </div>
                     @endforeach
                 </div>
-
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -131,7 +105,7 @@
 
             {{-- Footer --}}
             <p class="mt-10 text-xs text-[#4A556B]">
-                © {{ date('Y') }} STS EventSekolah. Semua hak dilindungi.
+                © {{ date('Y') }} EventSekolah. Semua hak dilindungi.
             </p>
 
         </div>

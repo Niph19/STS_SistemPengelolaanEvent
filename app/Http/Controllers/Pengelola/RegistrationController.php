@@ -17,7 +17,7 @@ class RegistrationController extends Controller
     {
         abort_if($event->pengelola_id !== auth()->id(), 403);
 
-        $event->loadCount('registrations');
+        $event->loadCount(['registrations as registrations_count' => fn ($query) => $query->whereIn('status', ['pending', 'approved'])]);
 
         $registrations = $event->registrations()
             ->with('user')

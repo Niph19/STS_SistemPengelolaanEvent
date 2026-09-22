@@ -122,7 +122,7 @@
         </button>
 
         {{-- Demo credentials info --}}
-        <div class="mt-4 p-3.5 rounded-xl bg-[#0F1729] border border-[#1E2E4A]">
+        {{-- <div class="mt-4 p-3.5 rounded-xl bg-[#0F1729] border border-[#1E2E4A]">
             <p class="text-xs font-semibold text-[#6B7A99] mb-2 uppercase tracking-wider">Akun Demo</p>
             <div class="space-y-1.5 text-xs text-[#9BA3B8]">
                 <div class="flex items-center gap-2">
@@ -144,7 +144,7 @@
                     <span class="font-mono">password</span>
                 </div>
             </div>
-        </div>
+        </div> --}}
     </form>
 
     <script>

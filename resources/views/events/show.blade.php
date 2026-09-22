@@ -14,7 +14,7 @@
         'canceled'  => 'Dibatalkan',
     ];
 
-    $filledSlots   = $event->registrations_count ?? $event->registrations->count();
+    $filledSlots   = $event->registrations_count ?? $event->registrations->whereIn('status', ['pending', 'approved'])->count();
     $remaining     = $event->capacity - $filledSlots;
     $fillPercent   = $event->capacity > 0 ? min(100, round($filledSlots / $event->capacity * 100)) : 0;
     $canRegister   = auth()->check() && auth()->user()->role === 'peserta'

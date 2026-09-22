@@ -17,7 +17,29 @@ test('users can authenticate using the login screen', function () {
     ]);
 
     $this->assertAuthenticated();
-    $response->assertRedirect(route('dashboard', absolute: false));
+    $response->assertRedirect(route('landing', absolute: false));
+});
+
+test('admin is redirected to the admin dashboard after login', function () {
+    $user = User::factory()->create(['role' => 'admin']);
+
+    $response = $this->post('/login', [
+        'email' => $user->email,
+        'password' => 'password',
+    ]);
+
+    $response->assertRedirect(route('admin.dashboard', absolute: false));
+});
+
+test('pengelola is redirected to the pengelola dashboard after login', function () {
+    $user = User::factory()->create(['role' => 'pengelola']);
+
+    $response = $this->post('/login', [
+        'email' => $user->email,
+        'password' => 'password',
+    ]);
+
+    $response->assertRedirect(route('pengelola.dashboard', absolute: false));
 });
 
 test('users can not authenticate with invalid password', function () {

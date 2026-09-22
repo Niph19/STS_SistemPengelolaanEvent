@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
+use App\Http\Controllers\Admin\EventController as AdminEventController;
+use App\Http\Controllers\Admin\RegistrationController as AdminRegistrationController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\Pengelola\CategoryController as PengelolaCategoryController;
@@ -20,6 +22,13 @@ use Illuminate\Support\Facades\Route;
 */
 Route::get('/', [LandingController::class, 'index'])->name('landing');
 Route::get('/events/{event}', [LandingController::class, 'show'])->name('events.show');
+Route::middleware('auth')->get('/dashboard', function () {
+    return match (auth()->user()->role) {
+        'admin' => redirect()->route('admin.dashboard'),
+        'pengelola' => redirect()->route('pengelola.dashboard'),
+        default => redirect()->route('peserta.dashboard'),
+    };
+})->name('dashboard');
 
 /*
 |--------------------------------------------------------------------------
@@ -57,6 +66,9 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
     Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
     Route::resource('users', AdminUserController::class);
     Route::resource('categories', AdminCategoryController::class);
+    Route::resource('events', AdminEventController::class);
+    Route::get('/events/{event}/registrations', [AdminRegistrationController::class, 'index'])->name('events.registrations');
+    Route::patch('/registrations/{registration}/status', [AdminRegistrationController::class, 'updateStatus'])->name('registrations.update-status');
 });
 
 /*

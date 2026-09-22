@@ -58,54 +58,6 @@
             @enderror
         </div>
 
-        {{-- Role selection cards --}}
-        <div class="space-y-1.5">
-            <label class="block text-sm font-medium text-[#C4CBDC]">Daftar sebagai</label>
-            <div class="grid grid-cols-2 gap-3">
-                {{-- Peserta card --}}
-                <label for="role_peserta" class="role-card cursor-pointer group">
-                    <input type="radio" id="role_peserta" name="role" value="peserta"
-                           {{ old('role', 'peserta') === 'peserta' ? 'checked' : '' }}
-                           class="sr-only peer" onchange="updateRoleCards()">
-                    <div class="p-4 rounded-xl border-2 transition-all duration-200 bg-[#0F1729]
-                                peer-checked:border-[#E8734A] peer-checked:bg-[#E8734A]/5
-                                border-[#1E2E4A] group-hover:border-[#2A3E5A]">
-                        <div class="w-8 h-8 rounded-lg bg-[#1A2540] flex items-center justify-center mb-2.5 transition-colors peer-checked:bg-[#E8734A]/15">
-                            <svg class="w-4 h-4 text-[#6B7A99] group-[.selected]:text-[#E8734A]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
-                            </svg>
-                        </div>
-                        <div class="text-sm font-semibold text-[#C4CBDC] mb-0.5">Peserta</div>
-                        <div class="text-xs text-[#6B7A99]">Ikuti event</div>
-                    </div>
-                </label>
-
-                {{-- Pengelola card --}}
-                <label for="role_pengelola" class="role-card cursor-pointer group">
-                    <input type="radio" id="role_pengelola" name="role" value="pengelola"
-                           {{ old('role') === 'pengelola' ? 'checked' : '' }}
-                           class="sr-only peer" onchange="updateRoleCards()">
-                    <div class="p-4 rounded-xl border-2 transition-all duration-200 bg-[#0F1729]
-                                peer-checked:border-[#E8734A] peer-checked:bg-[#E8734A]/5
-                                border-[#1E2E4A] group-hover:border-[#2A3E5A]">
-                        <div class="w-8 h-8 rounded-lg bg-[#1A2540] flex items-center justify-center mb-2.5">
-                            <svg class="w-4 h-4 text-[#6B7A99]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
-                            </svg>
-                        </div>
-                        <div class="text-sm font-semibold text-[#C4CBDC] mb-0.5">Pengelola</div>
-                        <div class="text-xs text-[#6B7A99]">Kelola event</div>
-                    </div>
-                </label>
-            </div>
-            @error('role')
-                <p class="flex items-center gap-1.5 text-xs text-red-400">
-                    <svg class="w-3 h-3 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/></svg>
-                    {{ $message }}
-                </p>
-            @enderror
-        </div>
-
         {{-- Password --}}
         <div class="space-y-1.5">
             <label for="password" class="block text-sm font-medium text-[#C4CBDC]">Password</label>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Event;
+use App\Models\Registration;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -16,14 +17,20 @@ class LandingController extends Controller
     {
         $categories = Category::orderBy('name')->get();
 
+        $activeEvents = Event::whereIn('status', ['upcoming', 'ongoing'])->count();
+        $registeredParticipants = Registration::whereIn('status', ['pending', 'approved'])
+            ->distinct('user_id')
+            ->count('user_id');
+
         $events = Event::with(['category', 'pengelola'])
-            ->withCount('registrations')
+            ->withCount(['registrations as registrations_count' => fn ($query) => $query->whereIn('status', ['pending', 'approved'])])
             ->filter($request->only(['search', 'category_id', 'status']))
+            ->registrationOpen()
             ->orderBy('start_date')
-            ->paginate(12)
+            ->paginate(8)
             ->withQueryString();
 
-        return view('landing', compact('events', 'categories'));
+        return view('landing', compact('events', 'categories', 'activeEvents', 'registeredParticipants'));
     }
 
     /**
@@ -31,7 +38,7 @@ class LandingController extends Controller
      */
     public function show(Event $event): View
     {
-        $event->loadCount('registrations');
+        $event->loadCount(['registrations as registrations_count' => fn ($query) => $query->whereIn('status', ['pending', 'approved'])]);
         $event->load(['category', 'pengelola']);
 
         // Check if the logged-in peserta has already registered

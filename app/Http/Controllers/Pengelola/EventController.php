@@ -16,7 +16,7 @@ class EventController extends Controller
 
         $events = Event::where('pengelola_id', auth()->id())
             ->with('category')
-            ->withCount('registrations')
+            ->withCount(['registrations as registrations_count' => fn ($query) => $query->whereIn('status', ['pending', 'approved'])])
             ->filter($request->only(['search', 'category_id', 'status']))
             ->latest()
             ->paginate(15)

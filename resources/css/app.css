@@ -1,3 +1,37 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+	.pagination-theme nav {
+		color: #9BA3B8;
+	}
+
+	.pagination-theme nav > div:first-child {
+		color: #9BA3B8;
+	}
+
+	.pagination-theme nav > div:last-child span,
+	.pagination-theme nav > div:last-child a {
+		border-color: rgba(255, 255, 255, 0.08);
+		background-color: #1A2540;
+		color: #9BA3B8;
+		box-shadow: none;
+	}
+
+	.pagination-theme nav > div:last-child a:hover {
+		background-color: rgba(232, 115, 74, 0.14);
+		color: #F5F3EE;
+	}
+
+	.pagination-theme nav > div:last-child span[aria-current="page"] span {
+		border-color: #E8734A;
+		background-color: #E8734A;
+		color: #FFFFFF;
+	}
+
+	.pagination-theme nav > div:last-child span[aria-disabled="true"] span {
+		background-color: #111A2D;
+		color: #59657D;
+	}
+}

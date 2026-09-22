@@ -148,6 +148,15 @@ class DatabaseSeeder extends Seeder
             'status'       => 'upcoming',
         ]);
 
+        // --- Tambahan 24 event dari factory sehingga total menjadi 30 event ---
+        Event::factory()
+            ->count(24)
+            ->state(fn () => [
+                'category_id' => Category::inRandomOrder()->value('id'),
+                'pengelola_id' => User::where('role', 'pengelola')->inRandomOrder()->value('id'),
+            ])
+            ->create();
+
         // --- Registrasi ---
         Registration::create([
             'user_id'       => $peserta1->id,

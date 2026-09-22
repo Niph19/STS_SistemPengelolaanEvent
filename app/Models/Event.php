@@ -94,6 +94,16 @@ class Event extends Model
             });
     }
 
+    public function scopeRegistrationOpen(Builder $query): Builder
+    {
+        return $query
+            ->where('status', 'upcoming')
+            ->whereRaw(
+                '(select count(*) from registrations where registrations.event_id = events.id and registrations.status in (?, ?)) < events.capacity',
+                ['pending', 'approved']
+            );
+    }
+
     /**
      * Menghitung sisa kuota yang masih tersedia berdasarkan pendaftaran yang disetujui.
      */

@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>{{ $title ? $title . ' — STS Event' : config('app.name') . ' — STS Event' }}</title>
+    <title>{{ $title ? $title . ' — EventSekolah' : config('app.name') . ' — EventSekolah' }}</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="min-h-screen bg-navy-main text-ink-primary font-sans antialiased lg:flex" x-data="{ sidebarOpen: false }">
@@ -29,7 +29,7 @@
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
             </svg>
         </div>
-        <span class="font-semibold text-ink-primary tracking-tight">STS Event</span>
+        <span class="font-semibold text-ink-primary tracking-tight">EventSekolah</span>
     </div>
 
     {{-- Role Badge --}}
@@ -56,6 +56,7 @@
             <x-sidebar-link route="admin.dashboard" label="Dashboard" icon="home"/>
             <x-sidebar-link route="admin.users.index" label="Kelola User" icon="users"/>
             <x-sidebar-link route="admin.categories.index" label="Kategori" icon="tag"/>
+            <x-sidebar-link route="admin.events.index" label="Event" icon="calendar"/>
         @elseif(auth()->user()->role === 'pengelola')
             <x-sidebar-link route="pengelola.dashboard" label="Dashboard" icon="home"/>
             <x-sidebar-link route="pengelola.events.index" label="Event" icon="calendar"/>
@@ -67,7 +68,7 @@
 
         <div class="pt-4 mt-4 border-t border-navy-border">
             <x-sidebar-link route="profile.edit" label="Profil" icon="user"/>
-            <x-sidebar-link route="landing" label="Lihat Website" icon="globe"/>
+            <x-sidebar-link route="landing" label="Halaman Utama" icon="globe"/>
         </div>
     </nav>
 
