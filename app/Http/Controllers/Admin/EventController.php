@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\AdminEventRequest;
 use App\Models\Category;
 use App\Models\Event;
 use Illuminate\Http\Request;
@@ -31,9 +32,10 @@ class EventController extends Controller
         ]);
     }
 
-    public function store(Request $request)
+    public function store(AdminEventRequest $request)
     {
-        $event = Event::create($this->validated($request) + ['pengelola_id' => $request->integer('pengelola_id')]);
+        $validated = $request->validated();
+        $event = Event::create($validated);
 
         return redirect()->route('admin.events.show', $event)->with('success', 'Event berhasil dibuat.');
     }
@@ -54,9 +56,9 @@ class EventController extends Controller
         ]);
     }
 
-    public function update(Request $request, Event $event)
+    public function update(AdminEventRequest $request, Event $event)
     {
-        $event->update($this->validated($request) + ['pengelola_id' => $request->integer('pengelola_id')]);
+        $event->update($request->validated());
 
         return redirect()->route('admin.events.show', $event)->with('success', 'Event berhasil diperbarui.');
     }
@@ -68,18 +70,4 @@ class EventController extends Controller
         return redirect()->route('admin.events.index')->with('success', 'Event berhasil dihapus.');
     }
 
-    private function validated(Request $request): array
-    {
-        return $request->validate([
-            'title' => ['required', 'string', 'max:255'],
-            'description' => ['required', 'string'],
-            'location' => ['required', 'string', 'max:255'],
-            'category_id' => ['required', 'exists:categories,id'],
-            'pengelola_id' => ['required', 'exists:users,id'],
-            'start_date' => ['required', 'date'],
-            'end_date' => ['nullable', 'date', 'after:start_date'],
-            'capacity' => ['required', 'integer', 'min:1'],
-            'status' => ['required', 'in:upcoming,ongoing,completed,canceled'],
-        ]);
-    }
 }

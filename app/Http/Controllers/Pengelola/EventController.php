@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Pengelola;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\PengelolaEventStoreRequest;
+use App\Http\Requests\PengelolaEventUpdateRequest;
 use App\Models\Category;
 use App\Models\Event;
 use Illuminate\Http\Request;
@@ -31,19 +33,9 @@ class EventController extends Controller
         return view('pengelola.events.create', compact('categories'));
     }
 
-    public function store(Request $request)
+    public function store(PengelolaEventStoreRequest $request)
     {
-        $validated = $request->validate([
-            'title'       => ['required', 'string', 'max:255'],
-            'description' => ['required', 'string'],
-            'location'    => ['required', 'string', 'max:255'],
-            'category_id' => ['required', 'exists:categories,id'],
-            'start_date'  => ['required', 'date', 'after:now'],
-            'end_date'    => ['nullable', 'date', 'after:start_date'],
-            'capacity'    => ['required', 'integer', 'min:1'],
-            'status'      => ['required', 'in:upcoming,ongoing,completed,canceled'],
-        ]);
-
+        $validated = $request->validated();
         $validated['pengelola_id'] = auth()->id();
         Event::create($validated);
 
@@ -75,22 +67,11 @@ class EventController extends Controller
         return view('pengelola.events.edit', compact('event', 'categories'));
     }
 
-    public function update(Request $request, Event $event)
+    public function update(PengelolaEventUpdateRequest $request, Event $event)
     {
         abort_if($event->pengelola_id !== auth()->id(), 403);
 
-        $validated = $request->validate([
-            'title'       => ['required', 'string', 'max:255'],
-            'description' => ['required', 'string'],
-            'location'    => ['required', 'string', 'max:255'],
-            'category_id' => ['required', 'exists:categories,id'],
-            'start_date'  => ['required', 'date'],
-            'end_date'    => ['nullable', 'date', 'after:start_date'],
-            'capacity'    => ['required', 'integer', 'min:1'],
-            'status'      => ['required', 'in:upcoming,ongoing,completed,canceled'],
-        ]);
-
-        $event->update($validated);
+        $event->update($request->validated());
 
         return redirect()->route('pengelola.events.show', $event)
                          ->with('success', 'Event berhasil diperbarui.');

@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;
 use Illuminate\View\View;
 
 class CategoryController extends Controller
@@ -28,11 +27,11 @@ class CategoryController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
+        $validated = $request->validate([
             'name' => ['required', 'string', 'max:100', 'unique:categories,name'],
         ]);
 
-        Category::create(['name' => $request->name]);
+        Category::create($validated);
 
         return redirect()->route('admin.categories.index')
                          ->with('success', 'Kategori berhasil ditambahkan.');
@@ -46,12 +45,11 @@ class CategoryController extends Controller
 
     public function update(Request $request, Category $category)
     {
-        $request->validate([
-            'name' => ['required', 'string', 'max:100',
-                       Rule::unique('categories', 'name')->ignore($category->id)],
+        $validated = $request->validate([
+            'name' => ['required', 'string', 'max:100', 'unique:categories,name,'.$category->id],
         ]);
 
-        $category->update(['name' => $request->name]);
+        $category->update($validated);
 
         return redirect()->route('admin.categories.index')
                          ->with('success', 'Kategori berhasil diperbarui.');

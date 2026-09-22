@@ -103,7 +103,7 @@
 
                         <!-- Subheadline -->
                         <p class="text-base sm:text-lg text-[#9BA3B8] leading-relaxed max-w-2xl mb-8 font-normal">
-                            Temukan event terbaik di sekolahmu, seminar, workshop kejuruan, lomba prestasi, hingga kegiatan OSIS. Amankan slotmu sebelum kuota penuh dan pantau status pendaftaran langsung dari dashboard-mu.
+                            Temukan event terbaik di sekolah-sekolah, seminar, workshop kejuruan, lomba prestasi, hingga kegiatan OSIS. Amankan slotmu sebelum kuota penuh dan pantau status pendaftaran langsung dari dashboard-mu.
                         </p>
 
                         <!-- Quick Search & Action Bar -->

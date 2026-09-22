@@ -25,9 +25,11 @@ class RegistrationController extends Controller
 
     public function updateStatus(Request $request, Registration $registration)
     {
-        $registration->update($request->validate([
+        $validated = $request->validate([
             'status' => ['required', 'in:pending,approved,rejected,canceled'],
-        ]));
+        ]);
+
+        $registration->update($validated);
 
         return back()->with('success', 'Status pendaftaran berhasil diperbarui.');
     }

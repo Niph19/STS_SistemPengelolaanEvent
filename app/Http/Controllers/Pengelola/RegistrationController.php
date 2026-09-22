@@ -42,11 +42,11 @@ class RegistrationController extends Controller
     {
         abort_if($registration->event->pengelola_id !== auth()->id(), 403);
 
-        $request->validate([
-            'status' => ['required', 'in:approved,rejected,pending,canceled'],
+        $validated = $request->validate([
+            'status' => ['required', 'in:pending,approved,rejected,canceled'],
         ]);
 
-        $registration->update(['status' => $request->status]);
+        $registration->update($validated);
 
         return back()->with('success', 'Status pendaftaran berhasil diperbarui.');
     }
