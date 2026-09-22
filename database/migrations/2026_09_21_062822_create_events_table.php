@@ -19,7 +19,7 @@ return new class extends Migration
             $table->text('description');
             $table->string('location');
             $table->datetime('start_date');
-            $table->datetime('end_date');
+            $table->datetime('end_date')->nullable();
             $table->unsignedInteger('capacity');
             $table->enum('status', ['upcoming', 'ongoing', 'completed', 'canceled']);
             $table->timestamps();

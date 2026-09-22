@@ -5,13 +5,20 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use Illuminate\View\View;
 
 class CategoryController extends Controller
 {
     public function index(Request $request): View
     {
-        return view('admin.categories.index');
+        $categories = Category::withCount('events')
+            ->when($request->search, fn ($q, $s) => $q->where('name', 'like', "%{$s}%"))
+            ->latest()
+            ->paginate(15)
+            ->withQueryString();
+
+        return view('admin.categories.index', compact('categories'));
     }
 
     public function create(): View
@@ -21,21 +28,40 @@ class CategoryController extends Controller
 
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => ['required', 'string', 'max:100', 'unique:categories,name'],
+        ]);
+
+        Category::create(['name' => $request->name]);
+
+        return redirect()->route('admin.categories.index')
+                         ->with('success', 'Kategori berhasil ditambahkan.');
     }
 
     public function edit(Category $category): View
     {
+        $category->loadCount('events');
         return view('admin.categories.edit', compact('category'));
     }
 
     public function update(Request $request, Category $category)
     {
-        //
+        $request->validate([
+            'name' => ['required', 'string', 'max:100',
+                       Rule::unique('categories', 'name')->ignore($category->id)],
+        ]);
+
+        $category->update(['name' => $request->name]);
+
+        return redirect()->route('admin.categories.index')
+                         ->with('success', 'Kategori berhasil diperbarui.');
     }
 
     public function destroy(Category $category)
     {
-        //
+        $category->delete();
+
+        return redirect()->route('admin.categories.index')
+                         ->with('success', 'Kategori berhasil dihapus.');
     }
 }

@@ -2,64 +2,47 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
+use App\Models\Event;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class LandingController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display the landing page with event list and filters.
      */
-    public function index()
+    public function index(Request $request): View
     {
-        
-        return view('landing');
+        $categories = Category::orderBy('name')->get();
+
+        $events = Event::with(['category', 'pengelola'])
+            ->withCount('registrations')
+            ->filter($request->only(['search', 'category_id', 'status']))
+            ->orderBy('start_date')
+            ->paginate(12)
+            ->withQueryString();
+
+        return view('landing', compact('events', 'categories'));
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Display the detail page for a specific event.
      */
-    public function create()
+    public function show(Event $event): View
     {
-        //
-    }
+        $event->loadCount('registrations');
+        $event->load(['category', 'pengelola']);
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+        // Check if the logged-in peserta has already registered
+        $registered = false;
+        if (auth()->check() && auth()->user()->role === 'peserta') {
+            $registered = $event->registrations()
+                ->where('user_id', auth()->id())
+                ->whereIn('status', ['pending', 'approved'])
+                ->exists();
+        }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        return view('events.show', compact('event', 'registered'));
     }
 }

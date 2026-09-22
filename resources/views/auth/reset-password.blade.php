@@ -11,10 +11,10 @@
 
         {{-- Email --}}
         <div>
-            <label for="email" class="block text-sm font-medium text-[#F5F3EE] mb-1.5">Email</label>
+            <label for="email" class="block text-sm font-medium text-[#C4CBDC] mb-1.5">Email</label>
             <input id="email" type="email" name="email" value="{{ old('email', $request->email) }}" required autofocus autocomplete="username"
-                   class="w-full px-4 py-2.5 rounded-xl bg-[#0F1729] border text-sm text-[#F5F3EE] placeholder:text-[#64748B] transition-colors focus:outline-none focus:ring-1
-                          {{ $errors->has('email') ? 'border-red-500/60 focus:border-red-500/60 focus:ring-red-500/30' : 'border-white/[0.08] focus:border-[#E8734A]/50 focus:ring-[#E8734A]/20' }}">
+                   class="w-full px-4 py-2.5 rounded-xl bg-[#0F1729] border text-sm text-[#F5F3EE] placeholder:text-[#3A4560] transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-0
+                          {{ $errors->has('email') ? 'border-red-500/50 focus:border-red-500/50 focus:ring-red-500/20' : 'border-[#1E2E4A] hover:border-[#2A3E5A] focus:border-[#E8734A]/50 focus:ring-[#E8734A]/15' }}">
             @error('email')
                 <p class="mt-1.5 text-xs text-red-400">{{ $message }}</p>
             @enderror
@@ -22,10 +22,10 @@
 
         {{-- New Password --}}
         <div>
-            <label for="password" class="block text-sm font-medium text-[#F5F3EE] mb-1.5">Password Baru</label>
+            <label for="password" class="block text-sm font-medium text-[#C4CBDC] mb-1.5">Password Baru</label>
             <input id="password" type="password" name="password" required autocomplete="new-password"
-                   class="w-full px-4 py-2.5 rounded-xl bg-[#0F1729] border text-sm text-[#F5F3EE] placeholder:text-[#64748B] transition-colors focus:outline-none focus:ring-1
-                          {{ $errors->has('password') ? 'border-red-500/60 focus:border-red-500/60 focus:ring-red-500/30' : 'border-white/[0.08] focus:border-[#E8734A]/50 focus:ring-[#E8734A]/20' }}"
+                   class="w-full px-4 py-2.5 rounded-xl bg-[#0F1729] border text-sm text-[#F5F3EE] placeholder:text-[#3A4560] transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-0
+                          {{ $errors->has('password') ? 'border-red-500/50 focus:border-red-500/50 focus:ring-red-500/20' : 'border-[#1E2E4A] hover:border-[#2A3E5A] focus:border-[#E8734A]/50 focus:ring-[#E8734A]/15' }}"
                    placeholder="Min. 8 karakter">
             @error('password')
                 <p class="mt-1.5 text-xs text-red-400">{{ $message }}</p>
@@ -34,9 +34,9 @@
 
         {{-- Confirm --}}
         <div>
-            <label for="password_confirmation" class="block text-sm font-medium text-[#F5F3EE] mb-1.5">Konfirmasi Password Baru</label>
+            <label for="password_confirmation" class="block text-sm font-medium text-[#C4CBDC] mb-1.5">Konfirmasi Password Baru</label>
             <input id="password_confirmation" type="password" name="password_confirmation" required autocomplete="new-password"
-                   class="w-full px-4 py-2.5 rounded-xl bg-[#0F1729] border border-white/[0.08] text-sm text-[#F5F3EE] placeholder:text-[#64748B] transition-colors focus:outline-none focus:ring-1 focus:border-[#E8734A]/50 focus:ring-[#E8734A]/20"
+                   class="w-full px-4 py-2.5 rounded-xl bg-[#0F1729] border border-[#1E2E4A] text-sm text-[#F5F3EE] placeholder:text-[#3A4560] transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-0 focus:border-[#E8734A]/50 focus:ring-[#E8734A]/15"
                    placeholder="Ulangi password baru">
             @error('password_confirmation')
                 <p class="mt-1.5 text-xs text-red-400">{{ $message }}</p>
@@ -44,7 +44,7 @@
         </div>
 
         <button type="submit"
-                class="w-full py-2.5 px-4 bg-[#E8734A] hover:bg-[#F2A671] text-white font-semibold text-sm rounded-xl transition-colors">
+                class="w-full py-3 px-4 bg-[#E8734A] hover:bg-[#D4623C] text-white font-semibold text-sm rounded-xl transition-all duration-200 shadow-lg shadow-[#E8734A]/20">
             Reset Password
         </button>
     </form>

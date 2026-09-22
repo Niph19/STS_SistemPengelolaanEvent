@@ -277,35 +277,35 @@
                                     ? 'bg-[#E8734A] text-white font-semibold'
                                     : 'bg-[#1A2540] hover:bg-white/[0.06] text-[#9BA3B8] hover:text-[#F5F3EE] border border-white/[0.08]'"
                                 class="px-4 py-2 rounded-[8px] text-xs transition-all whitespace-nowrap">
-                            Seminar & Talkshow
+                            Seminar
                         </button>
                         <button @click="activeCategory = 'workshop'"
                                 :class="activeCategory === 'workshop'
                                     ? 'bg-[#E8734A] text-white font-semibold'
                                     : 'bg-[#1A2540] hover:bg-white/[0.06] text-[#9BA3B8] hover:text-[#F5F3EE] border border-white/[0.08]'"
                                 class="px-4 py-2 rounded-[8px] text-xs transition-all whitespace-nowrap">
-                            Workshop & Bootcamp
+                            Workshop
                         </button>
                         <button @click="activeCategory = 'lomba'"
                                 :class="activeCategory === 'lomba'
                                     ? 'bg-[#E8734A] text-white font-semibold'
                                     : 'bg-[#1A2540] hover:bg-white/[0.06] text-[#9BA3B8] hover:text-[#F5F3EE] border border-white/[0.08]'"
                                 class="px-4 py-2 rounded-[8px] text-xs transition-all whitespace-nowrap">
-                            Lomba & Kompetisi
+                            Lomba
                         </button>
                         <button @click="activeCategory = 'pelatihan'"
                                 :class="activeCategory === 'pelatihan'
                                     ? 'bg-[#E8734A] text-white font-semibold'
                                     : 'bg-[#1A2540] hover:bg-white/[0.06] text-[#9BA3B8] hover:text-[#F5F3EE] border border-white/[0.08]'"
                                 class="px-4 py-2 rounded-[8px] text-xs transition-all whitespace-nowrap">
-                            Pelatihan Softskill
+                            Pelatihan
                         </button>
                         <button @click="activeCategory = 'kegiatan-siswa'"
                                 :class="activeCategory === 'kegiatan-siswa'
                                     ? 'bg-[#E8734A] text-white font-semibold'
                                     : 'bg-[#1A2540] hover:bg-white/[0.06] text-[#9BA3B8] hover:text-[#F5F3EE] border border-white/[0.08]'"
                                 class="px-4 py-2 rounded-[8px] text-xs transition-all whitespace-nowrap">
-                            Kegiatan Siswa & Ekskul
+                            Kegiatan Siswa
                         </button>
                     </div>
                 </div>
@@ -345,9 +345,8 @@
 
                 <!-- Event Cards 4-Column Grid -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-
-                    <!-- Event Card 1 -->
-                    <div x-show="activeCategory === 'all' || activeCategory === 'workshop'"
+                    @foreach($events as $event)
+                    <div x-show="activeCategory === 'all' || activeCategory === '{{ strtolower($event->category) }}'"
                          class="bg-[#1A2540] rounded-[8px] border border-white/[0.08] hover:border-[#E8734A]/40 transition-all duration-300 hover:-translate-y-1 flex flex-col overflow-hidden group">
                         <!-- Poster Image Container -->
                         <div class="relative h-44 bg-gradient-to-br from-[#0F1729] via-[#1A2540] to-blue-900/30 overflow-hidden border-b border-white/[0.08]">
@@ -415,208 +414,7 @@
                             </div>
                         </div>
                     </div>
-
-                    <!-- Event Card 2 -->
-                    <div x-show="activeCategory === 'all' || activeCategory === 'seminar'"
-                         class="bg-[#1A2540] rounded-[8px] border border-white/[0.08] hover:border-[#E8734A]/40 transition-all duration-300 hover:-translate-y-1 flex flex-col overflow-hidden group">
-                        <!-- Poster Image Container -->
-                        <div class="relative h-44 bg-gradient-to-br from-[#0F1729] via-[#1A2540] to-purple-900/30 overflow-hidden border-b border-white/[0.08]">
-                            <div class="absolute inset-0 flex items-center justify-center text-white/[0.07] group-hover:scale-105 transition-transform duration-500">
-                                <svg class="w-24 h-24" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 100-6 3 3 0 000 6z" />
-                                </svg>
-                            </div>
-                            <div class="absolute top-3 left-3 bg-[#E8734A] text-white px-2.5 py-1 rounded-[6px] text-xs font-bold shadow-md">
-                                05 Okt
-                            </div>
-                            <div class="absolute top-3 right-3 bg-[#0F1729]/80 backdrop-blur-md text-[#9BA3B8] border border-white/[0.08] px-2 py-0.5 rounded-[6px] text-[11px] font-medium">
-                                Seminar
-                            </div>
-                        </div>
-
-                        <!-- Card Content -->
-                        <div class="p-5 flex flex-col flex-grow justify-between">
-                            <div>
-                                <h3 class="text-base font-semibold text-[#F5F3EE] group-hover:text-[#E8734A] transition-colors line-clamp-2 leading-snug mb-2">
-                                    Seminar Karir: Strategi Menembus Magang & Kerja di Startup
-                                </h3>
-
-                                <p class="text-xs text-[#9BA3B8] line-clamp-2 mb-4 leading-relaxed">
-                                    Persiapkan CV, portofolio profesional, dan simulasi technical interview bersama alumni dan recruiter industri.
-                                </p>
-
-                                <div class="space-y-2 mb-4 text-xs text-[#9BA3B8]">
-                                    <div class="flex items-center gap-2">
-                                        <svg class="w-3.5 h-3.5 text-[#E8734A]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                        </svg>
-                                        <span>09:00 - 12:30 WIB</span>
-                                    </div>
-                                    <div class="flex items-center gap-2">
-                                        <svg class="w-3.5 h-3.5 text-[#E8734A]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                                        </svg>
-                                        <span class="truncate">Aula Serbaguna Lantai 3</span>
-                                    </div>
-                                    <div class="flex items-center gap-2">
-                                        <svg class="w-3.5 h-3.5 text-[#E8734A]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                                        </svg>
-                                        <span class="truncate">Penyelenggara: BKK Sekolah</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="pt-4 border-t border-white/[0.08]">
-                                <div class="flex items-center justify-between text-xs mb-3">
-                                    <span class="text-emerald-400 font-bold">Gratis</span>
-                                    <span class="text-[#9BA3B8]">Kapasitas: <strong class="text-[#F5F3EE]">140/150</strong></span>
-                                </div>
-                                <a href="{{ route('login') }}"
-                                   class="w-full inline-flex items-center justify-center gap-1.5 py-2 px-3 text-xs font-semibold text-[#F5F3EE] bg-[#0F1729] hover:bg-[#E8734A] hover:text-white border border-white/[0.08] hover:border-transparent rounded-[8px] transition-all">
-                                    <span>Lihat Detail / Daftar</span>
-                                    <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                                    </svg>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Event Card 3 -->
-                    <div x-show="activeCategory === 'all' || activeCategory === 'lomba'"
-                         class="bg-[#1A2540] rounded-[8px] border border-white/[0.08] hover:border-[#E8734A]/40 transition-all duration-300 hover:-translate-y-1 flex flex-col overflow-hidden group">
-                        <!-- Poster Image Container -->
-                        <div class="relative h-44 bg-gradient-to-br from-[#0F1729] via-[#1A2540] to-rose-900/30 overflow-hidden border-b border-white/[0.08]">
-                            <div class="absolute inset-0 flex items-center justify-center text-white/[0.07] group-hover:scale-105 transition-transform duration-500">
-                                <svg class="w-24 h-24" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
-                                </svg>
-                            </div>
-                            <div class="absolute top-3 left-3 bg-[#E8734A] text-white px-2.5 py-1 rounded-[6px] text-xs font-bold shadow-md">
-                                12 Okt
-                            </div>
-                            <div class="absolute top-3 right-3 bg-[#0F1729]/80 backdrop-blur-md text-[#9BA3B8] border border-white/[0.08] px-2 py-0.5 rounded-[6px] text-[11px] font-medium">
-                                Lomba
-                            </div>
-                        </div>
-
-                        <!-- Card Content -->
-                        <div class="p-5 flex flex-col flex-grow justify-between">
-                            <div>
-                                <h3 class="text-base font-semibold text-[#F5F3EE] group-hover:text-[#E8734A] transition-colors line-clamp-2 leading-snug mb-2">
-                                    Lomba Cepat Tepat Jaringan & Mikrotik Konfigurasi
-                                </h3>
-
-                                <p class="text-xs text-[#9BA3B8] line-clamp-2 mb-4 leading-relaxed">
-                                    Kompetisi troubleshooting jaringan kabel, routing protokol, dan wireless setup antar siswa SMK.
-                                </p>
-
-                                <div class="space-y-2 mb-4 text-xs text-[#9BA3B8]">
-                                    <div class="flex items-center gap-2">
-                                        <svg class="w-3.5 h-3.5 text-[#E8734A]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                        </svg>
-                                        <span>08:00 - 16:00 WIB</span>
-                                    </div>
-                                    <div class="flex items-center gap-2">
-                                        <svg class="w-3.5 h-3.5 text-[#E8734A]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                                        </svg>
-                                        <span class="truncate">Lab Jaringan TKJ 2</span>
-                                    </div>
-                                    <div class="flex items-center gap-2">
-                                        <svg class="w-3.5 h-3.5 text-[#E8734A]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                                        </svg>
-                                        <span class="truncate">Penyelenggara: Jurusan TKJ</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="pt-4 border-t border-white/[0.08]">
-                                <div class="flex items-center justify-between text-xs mb-3">
-                                    <span class="text-[#E8734A] font-bold">Rp 25.000 / Tim</span>
-                                    <span class="text-[#9BA3B8]">Kapasitas: <strong class="text-[#F5F3EE]">18/25 Tim</strong></span>
-                                </div>
-                                <a href="{{ route('login') }}"
-                                   class="w-full inline-flex items-center justify-center gap-1.5 py-2 px-3 text-xs font-semibold text-[#F5F3EE] bg-[#0F1729] hover:bg-[#E8734A] hover:text-white border border-white/[0.08] hover:border-transparent rounded-[8px] transition-all">
-                                    <span>Lihat Detail / Daftar</span>
-                                    <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                                    </svg>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Event Card 4 -->
-                    <div x-show="activeCategory === 'all' || activeCategory === 'kegiatan-siswa'"
-                         class="bg-[#1A2540] rounded-[8px] border border-white/[0.08] hover:border-[#E8734A]/40 transition-all duration-300 hover:-translate-y-1 flex flex-col overflow-hidden group">
-                        <!-- Poster Image Container -->
-                        <div class="relative h-44 bg-gradient-to-br from-[#0F1729] via-[#1A2540] to-amber-900/30 overflow-hidden border-b border-white/[0.08]">
-                            <div class="absolute inset-0 flex items-center justify-center text-white/[0.07] group-hover:scale-105 transition-transform duration-500">
-                                <svg class="w-24 h-24" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z" />
-                                </svg>
-                            </div>
-                            <div class="absolute top-3 left-3 bg-[#E8734A] text-white px-2.5 py-1 rounded-[6px] text-xs font-bold shadow-md">
-                                20 Okt
-                            </div>
-                            <div class="absolute top-3 right-3 bg-[#0F1729]/80 backdrop-blur-md text-[#9BA3B8] border border-white/[0.08] px-2 py-0.5 rounded-[6px] text-[11px] font-medium">
-                                Kegiatan Siswa
-                            </div>
-                        </div>
-
-                        <!-- Card Content -->
-                        <div class="p-5 flex flex-col flex-grow justify-between">
-                            <div>
-                                <h3 class="text-base font-semibold text-[#F5F3EE] group-hover:text-[#E8734A] transition-colors line-clamp-2 leading-snug mb-2">
-                                    Pentas Seni & Gelar Karya Kreativitas Siswa 2026
-                                </h3>
-
-                                <p class="text-xs text-[#9BA3B8] line-clamp-2 mb-4 leading-relaxed">
-                                    Ajang unjuk bakat musik, teater, pameran fotografi, dan bazar produk kewirausahaan siswa sekolah.
-                                </p>
-
-                                <div class="space-y-2 mb-4 text-xs text-[#9BA3B8]">
-                                    <div class="flex items-center gap-2">
-                                        <svg class="w-3.5 h-3.5 text-[#E8734A]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                        </svg>
-                                        <span>13:00 - 17:30 WIB</span>
-                                    </div>
-                                    <div class="flex items-center gap-2">
-                                        <svg class="w-3.5 h-3.5 text-[#E8734A]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                                        </svg>
-                                        <span class="truncate">Lapangan Utama Sekolah</span>
-                                    </div>
-                                    <div class="flex items-center gap-2">
-                                        <svg class="w-3.5 h-3.5 text-[#E8734A]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                                        </svg>
-                                        <span class="truncate">Penyelenggara: Pengurus OSIS</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="pt-4 border-t border-white/[0.08]">
-                                <div class="flex items-center justify-between text-xs mb-3">
-                                    <span class="text-emerald-400 font-bold">Gratis</span>
-                                    <span class="text-[#9BA3B8]">Kapasitas: <strong class="text-[#F5F3EE]">310/400</strong></span>
-                                </div>
-                                <a href="{{ route('login') }}"
-                                   class="w-full inline-flex items-center justify-center gap-1.5 py-2 px-3 text-xs font-semibold text-[#F5F3EE] bg-[#0F1729] hover:bg-[#E8734A] hover:text-white border border-white/[0.08] hover:border-transparent rounded-[8px] transition-all">
-                                    <span>Lihat Detail / Daftar</span>
-                                    <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                                    </svg>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
+                    @endforeach
                 </div>
 
                 <!-- View All Events CTA -->

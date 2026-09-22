@@ -4,101 +4,198 @@ namespace Database\Seeders;
 
 use App\Models\Category;
 use App\Models\Event;
+use App\Models\Registration;
 use App\Models\User;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
-    use WithoutModelEvents;
-
-    /**
-     * Seed the application's database.
-     */
     public function run(): void
     {
-        // User::factory(10)->create();
-
-        User::factory()->create([
-            'name' => 'Peserta',
-            'email' => 'peserta@example.com',
-            'password' => 'asdasdasd',
-            'phone' => '123123',
-            'address' => 'jalan poras',
-            'photo' => 'photo.png',
-            'role' => 'peserta',
+        // --- Users ---
+        User::create([
+            'name'     => 'Admin Sistem',
+            'email'    => 'admin@sts.id',
+            'password' => Hash::make('password'),
+            'role'     => 'admin',
+            'phone'    => '081200000001',
+            'address'  => 'Jl. Admin No. 1, Jakarta',
         ]);
 
-        User::factory()->create([
-            'name' => 'Pengelola',
-            'email' => 'pengelola@example.com',
-            'password' => 'asdasdasd',
-            'phone' => '123123',
-            'address' => 'jalan poras',
-            'photo' => 'photo.png',
-            'role' => 'pengelola',
-        ]);
-        
-        User::factory()->create([
-            'name' => 'Admin',
-            'email' => 'admin@example.com',
-            'password' => 'asdasdasd',
-            'phone' => '123123',
-            'address' => 'jalan poras',
-            'photo' => 'photo.png',
-            'role' => 'admin',
+        $pengelola1 = User::create([
+            'name'     => 'Budi Pengelola',
+            'email'    => 'pengelola@sts.id',
+            'password' => Hash::make('password'),
+            'role'     => 'pengelola',
+            'phone'    => '081200000002',
+            'address'  => 'Jl. Pengelola No. 2, Bandung',
         ]);
 
-        $categories = collect([
-            'Seminar',
-            'Workshop',
-            'Lomba',
-            'Pelatihan',
-            'Kegiatan Siswa',
-        ])->mapWithKeys(function (string $name) {
-            $category = Category::create(['name' => $name]);
-
-            return [$name => $category];
-        });
-
-        $pengelola = User::where('email', 'pengelola@example.com')->firstOrFail();
-
-        Event::create([
-            'category_id' => $categories['Seminar']->id,
-            'pengelola_id' => $pengelola->id,
-            'title' => 'Seminar Pengembangan Diri',
-            'description' => 'Seminar tentang pengembangan potensi dan keterampilan siswa.',
-            'location' => 'Aula Sekolah',
-            'start_date' => now()->addDays(7)->setTime(9, 0),
-            'end_date' => now()->addDays(7)->setTime(12, 0),
-            'capacity' => 100,
-            'status' => 'upcoming',
+        $pengelola2 = User::create([
+            'name'     => 'Dewi Pengelola',
+            'email'    => 'pengelola2@sts.id',
+            'password' => Hash::make('password'),
+            'role'     => 'pengelola',
+            'phone'    => '081200000003',
+            'address'  => 'Jl. Mawar No. 5, Surabaya',
         ]);
 
-        Event::create([
-            'category_id' => $categories['Workshop']->id,
-            'pengelola_id' => $pengelola->id,
-            'title' => 'Workshop Desain Kreatif',
-            'description' => 'Workshop praktik dasar desain kreatif untuk peserta.',
-            'location' => 'Laboratorium Komputer',
-            'start_date' => now()->addDays(14)->setTime(8, 0),
-            'end_date' => now()->addDays(14)->setTime(15, 0),
-            'capacity' => 40,
-            'status' => 'upcoming',
+        $peserta1 = User::create([
+            'name'     => 'Citra Peserta',
+            'email'    => 'peserta@sts.id',
+            'password' => Hash::make('password'),
+            'role'     => 'peserta',
+            'phone'    => '081200000004',
+            'address'  => 'Jl. Peserta No. 3, Yogyakarta',
         ]);
 
-        Event::create([
-            'category_id' => $categories['Lomba']->id,
-            'pengelola_id' => $pengelola->id,
-            'title' => 'Lomba Kreativitas Siswa',
-            'description' => 'Kompetisi kreativitas antar siswa dalam berbagai bidang.',
-            'location' => 'Lapangan Sekolah',
-            'start_date' => now()->addDays(21)->setTime(8, 0),
-            'end_date' => now()->addDays(21)->setTime(16, 0),
-            'capacity' => 80,
-            'status' => 'upcoming',
+        $peserta2 = User::create([
+            'name'     => 'Eko Santoso',
+            'email'    => 'peserta2@sts.id',
+            'password' => Hash::make('password'),
+            'role'     => 'peserta',
+            'phone'    => '081200000005',
+            'address'  => 'Jl. Merdeka No. 10, Semarang',
         ]);
 
-        
+        $peserta3 = User::create([
+            'name'     => 'Farida Hanum',
+            'email'    => 'peserta3@sts.id',
+            'password' => Hash::make('password'),
+            'role'     => 'peserta',
+            'phone'    => '081200000006',
+            'address'  => 'Jl. Anggrek No. 7, Medan',
+        ]);
+
+        // --- Kategori ---
+        $seminar   = Category::create(['name' => 'Seminar']);
+        $workshop  = Category::create(['name' => 'Workshop']);
+        $lomba     = Category::create(['name' => 'Lomba']);
+        $pelatihan = Category::create(['name' => 'Pelatihan']);
+        $webinar   = Category::create(['name' => 'Webinar']);
+
+        // --- Events ---
+        $event1 = Event::create([
+            'category_id'  => $seminar->id,
+            'pengelola_id' => $pengelola1->id,
+            'title'        => 'Seminar Teknologi 2026',
+            'description'  => 'Seminar tentang perkembangan teknologi masa depan: AI, IoT, dan Web3. Hadirkan para pakar terkemuka di bidangnya.',
+            'location'     => 'Aula Utama SMAN 1',
+            'start_date'   => now()->addDays(7),
+            'end_date'     => now()->addDays(7)->addHours(4),
+            'capacity'     => 100,
+            'status'       => 'upcoming',
+        ]);
+
+        $event2 = Event::create([
+            'category_id'  => $workshop->id,
+            'pengelola_id' => $pengelola1->id,
+            'title'        => 'Workshop Laravel untuk Pemula',
+            'description'  => 'Workshop intensif belajar Laravel dari dasar hingga membuat aplikasi web sederhana. Cocok untuk siswa dan mahasiswa.',
+            'location'     => 'Lab Komputer SMAN 1',
+            'start_date'   => now()->addDays(14),
+            'end_date'     => now()->addDays(15),
+            'capacity'     => 30,
+            'status'       => 'upcoming',
+        ]);
+
+        $event3 = Event::create([
+            'category_id'  => $lomba->id,
+            'pengelola_id' => $pengelola2->id,
+            'title'        => 'Lomba Desain Poster Nasional',
+            'description'  => 'Kompetisi desain poster tingkat nasional dengan tema "Indonesia Inovatif". Hadiah total Rp 10 juta.',
+            'location'     => 'Online (Zoom)',
+            'start_date'   => now()->addDays(21),
+            'end_date'     => now()->addDays(22),
+            'capacity'     => 200,
+            'status'       => 'upcoming',
+        ]);
+
+        $event4 = Event::create([
+            'category_id'  => $pelatihan->id,
+            'pengelola_id' => $pengelola2->id,
+            'title'        => 'Pelatihan Kepemimpinan Siswa',
+            'description'  => 'Pelatihan intensif kepemimpinan untuk pengurus OSIS dan organisasi siswa. Membangun karakter pemimpin muda.',
+            'location'     => 'Gedung Serbaguna SMAN 1',
+            'start_date'   => now()->subDays(2),
+            'end_date'     => now()->addDays(1),
+            'capacity'     => 50,
+            'status'       => 'ongoing',
+        ]);
+
+        $event5 = Event::create([
+            'category_id'  => $webinar->id,
+            'pengelola_id' => $pengelola1->id,
+            'title'        => 'Webinar Karir di Bidang IT',
+            'description'  => 'Webinar interaktif membahas prospek karir di dunia IT bersama praktisi industri dari Google, Tokopedia, dan Gojek.',
+            'location'     => 'Online (Google Meet)',
+            'start_date'   => now()->subDays(30),
+            'end_date'     => now()->subDays(30)->addHours(3),
+            'capacity'     => 500,
+            'status'       => 'completed',
+        ]);
+
+        $event6 = Event::create([
+            'category_id'  => $seminar->id,
+            'pengelola_id' => $pengelola2->id,
+            'title'        => 'Seminar Kesehatan Remaja',
+            'description'  => 'Seminar tentang kesehatan fisik dan mental remaja bersama dokter spesialis. Gratis untuk seluruh siswa.',
+            'location'     => 'Aula SMAN 2',
+            'start_date'   => now()->addDays(3),
+            'end_date'     => now()->addDays(3)->addHours(3),
+            'capacity'     => 150,
+            'status'       => 'upcoming',
+        ]);
+
+        // --- Registrasi ---
+        Registration::create([
+            'user_id'       => $peserta1->id,
+            'event_id'      => $event1->id,
+            'status'        => 'pending',
+            'registered_at' => now()->subHours(2),
+        ]);
+
+        Registration::create([
+            'user_id'       => $peserta1->id,
+            'event_id'      => $event2->id,
+            'status'        => 'approved',
+            'registered_at' => now()->subDays(3),
+        ]);
+
+        Registration::create([
+            'user_id'       => $peserta1->id,
+            'event_id'      => $event5->id,
+            'status'        => 'approved',
+            'registered_at' => now()->subDays(35),
+        ]);
+
+        Registration::create([
+            'user_id'       => $peserta2->id,
+            'event_id'      => $event1->id,
+            'status'        => 'approved',
+            'registered_at' => now()->subDays(1),
+        ]);
+
+        Registration::create([
+            'user_id'       => $peserta2->id,
+            'event_id'      => $event3->id,
+            'status'        => 'pending',
+            'registered_at' => now()->subHours(5),
+        ]);
+
+        Registration::create([
+            'user_id'       => $peserta3->id,
+            'event_id'      => $event4->id,
+            'status'        => 'approved',
+            'registered_at' => now()->subDays(4),
+        ]);
+
+        Registration::create([
+            'user_id'       => $peserta3->id,
+            'event_id'      => $event1->id,
+            'status'        => 'rejected',
+            'registered_at' => now()->subDays(2),
+        ]);
     }
 }

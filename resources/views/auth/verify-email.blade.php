@@ -1,4 +1,4 @@
-<x-layouts.guest :title="'Verifikasi Email'">
+<x-guest-layout title="Verifikasi Email">
 
     <div class="mb-8 text-center">
         <div class="w-14 h-14 rounded-full bg-[#E8734A]/10 border border-[#E8734A]/20 flex items-center justify-center mx-auto mb-4">
@@ -23,7 +23,7 @@
         <form method="POST" action="{{ route('verification.send') }}">
             @csrf
             <button type="submit"
-                    class="w-full py-2.5 px-4 bg-[#E8734A] hover:bg-[#F2A671] text-white font-semibold text-sm rounded-xl transition-colors">
+                    class="w-full py-3 px-4 bg-[#E8734A] hover:bg-[#D4623C] text-white font-semibold text-sm rounded-xl transition-all duration-200 shadow-lg shadow-[#E8734A]/20">
                 Kirim Ulang Email Verifikasi
             </button>
         </form>
@@ -31,10 +31,10 @@
         <form method="POST" action="{{ route('logout') }}">
             @csrf
             <button type="submit"
-                    class="w-full py-2.5 px-4 bg-white/5 hover:bg-white/10 text-[#9BA3B8] hover:text-[#F5F3EE] font-medium text-sm rounded-xl transition-colors">
+                    class="w-full py-3 px-4 bg-white/5 hover:bg-white/10 text-[#9BA3B8] hover:text-[#F5F3EE] font-medium text-sm rounded-xl transition-colors">
                 Keluar
             </button>
         </form>
     </div>
 
-</x-layouts.guest>
+</x-guest-layout>
