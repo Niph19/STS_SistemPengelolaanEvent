@@ -21,6 +21,7 @@
                      && $event->status === 'upcoming'
                      && $remaining > 0;
     $alreadyJoined = auth()->check() && isset($registered) && $registered;
+    $ticketRegistration = $participantRegistration ?? null;
 @endphp
 
 <!DOCTYPE html>
@@ -186,18 +187,29 @@
                     <p class="text-center text-xs text-ink-muted mt-3">
                         Lihat status di <a href="{{ route('peserta.registrations.index') }}" class="text-coral hover:underline">pendaftaran saya</a>
                     </p>
+                    <div class="mt-6 pt-5 border-t border-navy-border">
+                        <div class="flex items-center justify-between mb-3">
+                            <h4 class="text-sm font-semibold text-ink-primary">Barcode Tiket</h4>
+                            <span class="text-[10px] uppercase tracking-wider text-emerald-400">{{ $ticketRegistration->status === 'approved' ? 'Diterima' : 'Menunggu' }}</span>
+                        </div>
+                        <div class="rounded-lg bg-white p-4">
+                            <div class="h-20 w-full rounded-sm"
+                                 style="background: repeating-linear-gradient(90deg, #111827 0 2px, transparent 2px 4px, #111827 4px 5px, transparent 5px 8px, #111827 8px 12px, transparent 12px 14px, #111827 14px 15px, transparent 15px 18px);"></div>
+                        </div>
+                        <p class="mt-3 text-center text-[11px] text-ink-muted">Tunjukkan barcode ini kepada panitia saat check-in.</p>
+                    </div>
                 @elseif($canRegister)
                     <button @click="modalOpen = true"
                             class="w-full px-4 py-3 bg-coral hover:bg-coral-hover text-white text-sm font-semibold rounded-xl transition-colors">
                         Daftar Sekarang
                     </button>
                 @elseif(!auth()->check())
-                    <a href="{{ route('login') }}"
+                    <a href="{{ route('login', ['redirect' => route('events.show', $event)]) }}"
                        class="block w-full text-center px-4 py-3 bg-coral hover:bg-coral-hover text-white text-sm font-semibold rounded-xl transition-colors">
                         Masuk untuk Mendaftar
                     </a>
                     <p class="text-center text-xs text-ink-muted mt-3">
-                        Belum punya akun? <a href="{{ route('register') }}" class="text-coral hover:underline">Daftar</a>
+                        Belum punya akun? <a href="{{ route('register', ['redirect' => route('events.show', $event)]) }}" class="text-coral hover:underline">Daftar</a>
                     </p>
                 @elseif($remaining <= 0)
                     <div class="text-center px-4 py-3 rounded-xl bg-white/5 text-ink-muted text-sm">Kuota penuh</div>

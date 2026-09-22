@@ -46,7 +46,7 @@
                     @endphp
                     <div class="flex items-center gap-4 p-4 rounded-xl bg-navy-surface border border-navy-border">
                         <div class="flex-1 min-w-0">
-                            <p class="text-sm font-medium text-ink-primary truncate">{{ $reg->event->title }}</p>
+                            <a href="{{ route('events.show', $reg->event) }}" class="text-sm font-medium text-ink-primary hover:text-coral truncate block transition-colors">{{ $reg->event->title }}</a>
                             <p class="text-xs text-ink-muted mt-0.5">{{ $reg->event->start_date->isoFormat('D MMM YYYY') }}</p>
                         </div>
                         <span class="shrink-0 text-xs px-2.5 py-1 rounded-full {{ $rs['bg'] }} {{ $rs['text'] }}">

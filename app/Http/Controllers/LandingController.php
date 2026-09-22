@@ -43,13 +43,16 @@ class LandingController extends Controller
 
         // Check if the logged-in peserta has already registered
         $registered = false;
+        $participantRegistration = null;
         if (auth()->check() && auth()->user()->role === 'peserta') {
-            $registered = $event->registrations()
+            $participantRegistration = $event->registrations()
                 ->where('user_id', auth()->id())
                 ->whereIn('status', ['pending', 'approved'])
-                ->exists();
+                ->latest('registered_at')
+                ->first();
+            $registered = $participantRegistration !== null;
         }
 
-        return view('events.show', compact('event', 'registered'));
+        return view('events.show', compact('event', 'registered', 'participantRegistration'));
     }
 }

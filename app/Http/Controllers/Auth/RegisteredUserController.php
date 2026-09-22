@@ -41,7 +41,24 @@ class RegisteredUserController extends Controller
 
         return match ($user->role) {
             'pengelola' => redirect()->route('pengelola.dashboard'),
-            default => redirect()->route('landing'),
+            default => redirect()->to($this->safeRedirect($request)),
         };
+    }
+
+    private function safeRedirect(Request $request): string
+    {
+        $redirect = $request->input('redirect');
+
+        if (! is_string($redirect) || $redirect === '') {
+            return route('landing');
+        }
+
+        $parsed = parse_url($redirect);
+
+        if (isset($parsed['host']) && $parsed['host'] !== $request->getHost()) {
+            return route('landing');
+        }
+
+        return $parsed['path'] ?? route('landing');
     }
 }

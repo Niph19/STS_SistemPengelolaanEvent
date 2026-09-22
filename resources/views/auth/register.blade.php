@@ -11,6 +11,7 @@
 
     <form method="POST" action="{{ route('register') }}" class="space-y-5">
         @csrf
+        <input type="hidden" name="redirect" value="{{ old('redirect', request('redirect')) }}">
 
         {{-- Name --}}
         <div class="space-y-1.5">
