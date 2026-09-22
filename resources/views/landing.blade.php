@@ -44,8 +44,7 @@
                 <!-- Desktop Navigation Links -->
                 <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-[#9BA3B8]">
                     <a href="#beranda" class="text-[#F5F3EE] hover:text-[#E8734A] transition-colors">Beranda</a>
-                    <a href="#rekomendasi" class="hover:text-[#F5F3EE] transition-colors">Rekomendasi</a>
-                    <a href="#kategori" class="hover:text-[#F5F3EE] transition-colors">Kategori</a>
+                    <a href="#rekomendasi" class="hover:text-[#F5F3EE] transition-colors">Events</a>
                     <a href="#alur" class="hover:text-[#F5F3EE] transition-colors">Alur Daftar</a>
                 </nav>
 

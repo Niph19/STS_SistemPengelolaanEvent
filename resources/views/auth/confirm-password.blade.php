@@ -1,27 +1,28 @@
-<x-guest-layout>
-    <div class="mb-4 text-sm text-gray-600">
-        {{ __('This is a secure area of the application. Please confirm your password before continuing.') }}
+<x-layouts.guest :title="'Konfirmasi Password'">
+
+    <div class="mb-8">
+        <h1 class="text-2xl font-bold text-[#F5F3EE] tracking-tight mb-1">Konfirmasi Password</h1>
+        <p class="text-sm text-[#9BA3B8]">Ini area aman. Konfirmasi password kamu sebelum melanjutkan.</p>
     </div>
 
-    <form method="POST" action="{{ route('password.confirm') }}">
+    <form method="POST" action="{{ route('password.confirm') }}" class="space-y-5">
         @csrf
 
-        <!-- Password -->
         <div>
-            <x-input-label for="password" :value="__('Password')" />
-
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="current-password" />
-
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
+            <label for="password" class="block text-sm font-medium text-[#F5F3EE] mb-1.5">Password</label>
+            <input id="password" type="password" name="password" required autocomplete="current-password"
+                   class="w-full px-4 py-2.5 rounded-xl bg-[#0F1729] border text-sm text-[#F5F3EE] placeholder:text-[#64748B] transition-colors focus:outline-none focus:ring-1
+                          {{ $errors->has('password') ? 'border-red-500/60 focus:border-red-500/60 focus:ring-red-500/30' : 'border-white/[0.08] focus:border-[#E8734A]/50 focus:ring-[#E8734A]/20' }}"
+                   placeholder="••••••••">
+            @error('password')
+                <p class="mt-1.5 text-xs text-red-400">{{ $message }}</p>
+            @enderror
         </div>
 
-        <div class="flex justify-end mt-4">
-            <x-primary-button>
-                {{ __('Confirm') }}
-            </x-primary-button>
-        </div>
+        <button type="submit"
+                class="w-full py-2.5 px-4 bg-[#E8734A] hover:bg-[#F2A671] text-white font-semibold text-sm rounded-xl transition-colors">
+            Konfirmasi
+        </button>
     </form>
-</x-guest-layout>
+
+</x-layouts.guest>

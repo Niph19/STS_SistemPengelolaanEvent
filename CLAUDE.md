@@ -274,4 +274,3 @@ Perbedaan hak akses diterapkan melalui **Authentication**, **Authorization**, da
 | 7 | Validation & FormRequest |
 | 8 | Search, Filter & Pagination |
 | 9 | N+1 Query / Eager Loading |
-| 10 | SDLC — Product Backlog & Sprint Backlog |
